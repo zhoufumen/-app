@@ -1,0 +1,6 @@
+{
+  "name": "工程机械B2B获客",
+  "description": "面向全球工程机械销售的B2B高效智能获客终端。支持指定国家和重点行业设备（如挖掘机、矿卡）意向线索的一键自动化采集与分析，实时汇总主流社交平台的询价和采购网络商机。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
