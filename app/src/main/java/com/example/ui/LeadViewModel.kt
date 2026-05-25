@@ -212,7 +212,10 @@ class LeadViewModel(
                 content = "Ready to buy 2 high-capacity CAT-style excavators (30-40T range) for a coal quarry exploration in Moatize. Delivery directly CIF Beira port. Need detailed pricing and catalogs.",
                 keyword = "挖掘机",
                 timestamp = System.currentTimeMillis() - 3600000,
-                isSaved = true
+                isSaved = true,
+                email = "procurement@tete-mining.co.mz",
+                phone = "+258 84 192 1083",
+                platformId = "x_usr_tetemine_8420"
             ),
             LeadEntity(
                 accountName = "Durban_Logistics_ZA",
@@ -221,7 +224,10 @@ class LeadViewModel(
                 content = "Looking for heavy 12 ton road rehabilitation rollers for provincial highway projects. Sany is a great choice. Any Chinese exporter with quick delivery to Durban harbor? Please contact me.",
                 keyword = "压路机",
                 timestamp = System.currentTimeMillis() - 7200000,
-                isSaved = false
+                isSaved = false,
+                email = "logistics.manager@durban-rigs.co.za",
+                phone = "+27 11 482 9104",
+                platformId = "yt_chan_durbanlogi_22"
             ),
             LeadEntity(
                 accountName = "_Maputo_Civil_Constructors",
@@ -230,7 +236,10 @@ class LeadViewModel(
                 content = "Precisamos urgentemente de duas escavadoras hidráulicas chinesas baratas de 20 toneladas para início de obras habitacionais em Maputo. Alguém tem stock regional?",
                 keyword = "挖掘机",
                 timestamp = System.currentTimeMillis() - 10800000,
-                isSaved = true
+                isSaved = true,
+                email = "compras@maputo-constructores.com.mz",
+                phone = "+258 82 433 1190",
+                platformId = "tk_maputocivil_98"
             ),
             LeadEntity(
                 accountName = "GlobalRig_Trades",
@@ -239,7 +248,10 @@ class LeadViewModel(
                 content = "Sourcing 4 high heavy mining dump trucks over 50T payload with reliable warranty option. Intended shipment to Saudi Arabia. Send FOB price specs.",
                 keyword = "矿卡",
                 timestamp = System.currentTimeMillis() - 14400000,
-                isSaved = false
+                isSaved = false,
+                email = "b2b.trade@globalrig-exports.com",
+                phone = "+44 20 7946 0192",
+                platformId = "x_usr_globalrig_101"
             ),
             LeadEntity(
                 accountName = "MachineryInquirerSA",
@@ -248,7 +260,10 @@ class LeadViewModel(
                 content = "Is standard steel track recommended for manganese mining payload? Interested in getting 3 Crawler units of 360-series excavator. Drop email contact info.",
                 keyword = "挖掘机",
                 timestamp = System.currentTimeMillis() - 18000000,
-                isSaved = false
+                isSaved = false,
+                email = "contact@manganese-sa.co.za",
+                phone = "+27 21 893 2341",
+                platformId = "yt_chan_machineinq_77"
             )
         )
     }
