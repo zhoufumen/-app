@@ -36,6 +36,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.data.LeadEntity
@@ -883,7 +885,26 @@ fun B2BLeadCaptureScreen(
 
                             HorizontalDivider(color = BorderColor.copy(alpha = 0.5f), thickness = 1.dp)
 
-                            Column {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(6.dp))
+                                    .background(DeepBlueContainer.copy(alpha = 0.5f))
+                                    .pointerInput(lead.content) {
+                                        detectTapGestures(
+                                            onDoubleTap = {
+                                                if (lead.content.isNotEmpty()) {
+                                                    clipboardManager.setText(AnnotatedString(lead.content))
+                                                    Toast.makeText(context, "✅ 询盘需求已复制", Toast.LENGTH_SHORT).show()
+                                                }
+                                            },
+                                            onTap = {
+                                                Toast.makeText(context, "💡 双击求购留言可直接复制全文", Toast.LENGTH_SHORT).show()
+                                            }
+                                        )
+                                    }
+                                    .padding(8.dp)
+                            ) {
                                 Text(
                                     text = when (selectedLanguage) {
                                         "中文" -> "💬 买家求购留言 / 详细购买意向需求"
@@ -894,7 +915,7 @@ fun B2BLeadCaptureScreen(
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Bold
                                 )
-                                Spacer(modifier = Modifier.height(2.dp))
+                                Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = lead.content,
                                     color = IceBlueText,
@@ -1414,7 +1435,29 @@ fun LiveStatusDot(
 
 @Composable
 fun DialogProfileItem(label: String, value: String) {
-    Column(modifier = Modifier.padding(vertical = 2.dp)) {
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(6.dp))
+            .background(DeepBlueBG.copy(alpha = 0.3f))
+            .pointerInput(value) {
+                detectTapGestures(
+                    onDoubleTap = {
+                        if (value.isNotEmpty() && value != "N/A" && value != "加载中") {
+                            clipboardManager.setText(AnnotatedString(value))
+                            Toast.makeText(context, "✅ $label 已复制", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    onTap = {
+                        Toast.makeText(context, "💡 双击可复制: $value", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+    ) {
         Text(
             text = label,
             color = MutedBlueText,

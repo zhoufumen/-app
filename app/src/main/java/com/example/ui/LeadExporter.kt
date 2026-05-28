@@ -28,17 +28,22 @@ object LeadExporter {
     fun getPlatformSearchUrl(lead: LeadEntity): String {
         val cleanName = lead.accountName.trim()
         val nameWithoutAt = cleanName.removePrefix("@")
+        val encodedName = android.net.Uri.encode(nameWithoutAt)
         return when (lead.source.uppercase(Locale.getDefault())) {
-            "X", "TWITTER" -> "https://x.com/$nameWithoutAt"
-            "YOUTUBE" -> {
-                if (cleanName.startsWith("@")) {
-                    "https://www.youtube.com/$cleanName"
-                } else {
-                    "https://www.youtube.com/results?search_query=$cleanName"
-                }
+            "X", "TWITTER" -> {
+                // Use search query to ensure we find matching users/discussions instead of direct 404 error
+                "https://x.com/search?q=$encodedName"
             }
-            "TIKTOK" -> "https://www.tiktok.com/@$nameWithoutAt"
-            else -> "https://www.google.com/search?q=${lead.source}+$cleanName"
+            "YOUTUBE" -> {
+                "https://www.youtube.com/results?search_query=${android.net.Uri.encode(cleanName)}"
+            }
+            "TIKTOK" -> {
+                // Search for the user name on TikTok search results to avoid direct profile 404
+                "https://www.tiktok.com/search?q=$encodedName"
+            }
+            else -> {
+                "https://www.google.com/search?q=site:${lead.source.lowercase(Locale.getDefault())}.com+$encodedName"
+            }
         }
     }
 
